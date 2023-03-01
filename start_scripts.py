@@ -1,5 +1,5 @@
 import subprocess
 
-path = 'C:/Users/stocc/OneDrive/Desktop/constant/dummy.sh'
+path = './dummy.sh'
 
 subprocess.run([path])
