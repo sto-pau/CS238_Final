@@ -1,0 +1,738 @@
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.19998e-05       	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+2.63998e-05       	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+4.36791e-05       	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+6.4415e-05        	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+8.92981e-05       	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.000119158       	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.000154992       	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.000197997       	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.000249599       	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.000311517       	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.000385806       	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.00047496        	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.000581944       	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.000710352       	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.000864481       	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.00104938        	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.00127118        	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.00153721        	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.00185628        	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.0022388         	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.00269764        	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.00324877        	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.00390901        	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.0046997         	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.00564775        	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.00678432        	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.00814499        	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.00977088        	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.011712          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.0140365         	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.0168121         	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.0201428         	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.0241396         	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.0288926         	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.0344122         	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.040781          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.0480182         	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.0560172         	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.0650162         	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.0753995         	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.0857829         	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.0961663         	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.10655           	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.116933          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.127316          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.1377            	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.148083          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.158467          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.16885           	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.179233          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.189617          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.2               	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.21              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.22              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.23              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.24              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.25              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.26              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.27              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.28              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.29              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.3               	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.31              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.32              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.33              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.34              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.35              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.36              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.37              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.38              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.39              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.4               	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.41              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.42              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.43              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.44              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.45              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.46              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.47              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.48              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.49              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.5               	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.51              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.52              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.53              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.54              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.55              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.56              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.57              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.58              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.59              	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.6               	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.609524          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.619048          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.628571          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.638095          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.647619          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.657143          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.666667          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.67619           	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.685714          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.695238          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.704762          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.714286          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.72381           	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.733333          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.742857          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.752381          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.761905          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.771429          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.780952          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.790476          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.8               	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.809091          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.818182          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.827273          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.836364          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.845455          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.854545          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.863636          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.872727          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.881818          	-1.2000000000e+01
+# Region type :   patch inlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.890909          	-1.2000000000e+01
