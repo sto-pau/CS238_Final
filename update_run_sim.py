@@ -72,4 +72,4 @@ if __name__ == '__main__':
     dynamicMeshDictupdate(total_steps, time_steps, vel_x, vel_y, rotation, case_name)
 
     #do you need to run_mesh also? (changing # of swimmers)
-    runSim(case_name, True)
+    runSim(case_name)
