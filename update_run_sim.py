@@ -4,7 +4,7 @@ import subprocess
 import os
 
 def controlDictupdate(new_start_time, new_end_time, new_writeInterval, case_name):
-    
+    eol = os.linesep
     path = case_name + '/backGround/system/controlDict'
 
     with open(path, 'r') as file:
@@ -29,7 +29,7 @@ def controlDictupdate(new_start_time, new_end_time, new_writeInterval, case_name
     file.close()
 
 def dynamicMeshDictupdate(total_steps, time_steps, vel_x, vel_y, rotation, case_name):
-
+    eol = os.linesep
     path = case_name + '/backGround/constant/6DoF.dat'
 
     line_list = [f"{}{total_steps}{}({}".format(eol,total_steps,eol,eol)]
