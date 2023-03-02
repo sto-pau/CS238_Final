@@ -14,9 +14,6 @@ def controlDictupdate(new_start_time, new_end_time, new_writeInterval, case_name
 
     for line_number , line_content in enumerate(file_lines):
         if line_content.startswith("startTime"):
-            '''can't use this method on ssh w/ lower version python, need 3.6 have 3.5
-            file_lines[line_number] = "startTime       {};{}" #7 spaces
-            '''
             file_lines[line_number] = "startTime       {};{}".format(new_start_time, eol) #7 spaces
         elif line_content.startswith("endTime"):
             file_lines[line_number] = "endTime         {};{}".format(new_end_time, eol) #9 spaces
@@ -33,7 +30,7 @@ def dynamicMeshDictupdate(total_steps, time_steps, vel_x, vel_y, rotation, case_
     path = case_name + '/backGround/constant/6DoF.dat'
 
     line_list = ["{}{}{}({}".format(eol,total_steps,eol,eol)]
-    line_list.extend([ "({} (({} {} 0) (0 0 {}))){}".format(time_steps[line], vel_x[line], vel_y[line], rotation[line]) for line in range(total_steps) ])
+    line_list.extend([ "({} (({} {} 0) (0 0 {}))){}".format(time_steps[line], vel_x[line], vel_y[line], rotation[line], eol) for line in range(total_steps) ])
     line_list.extend([ "){}".format(eol) ])
     
     file_lines = ''.join(line_list)
