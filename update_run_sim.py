@@ -13,13 +13,14 @@ def controlDictupdate(new_start_time, new_end_time, new_writeInterval, case_name
 
     for line_number , line_content in enumerate(file_lines):
         if line_content.startswith("startTime"):
-            '''can't use this method on ssh w/ lower version python
+            '''can't use this method on ssh w/ lower version python, need 3.6 have 3.5
             file_lines[line_number] = f"startTime       {new_start_time};\n" #7 spaces
             '''
+            file_lines[line_number] = f"startTime       {new_start_time};\n".format(new_start_time) #7 spaces
         elif line_content.startswith("endTime"):
-            file_lines[line_number] = f"endTime         {new_end_time};\n" #9 spaces
+            file_lines[line_number] = f"endTime         {new_end_time};\n".format(new_end_time) #9 spaces
         elif line_content.startswith("writeInterval"):
-            file_lines[line_number] = f"writeInterval   {new_writeInterval};\n" #3 spaces
+            file_lines[line_number] = f"writeInterval   {new_writeInterval};\n".format(new_writeInterval) #3 spaces
 
     with open(path, 'w') as file:
         file.writelines(file_lines)
@@ -30,8 +31,8 @@ def dynamicMeshDictupdate(total_steps, time_steps, vel_x, vel_y, rotation, case_
 
     path = case_name + '/backGround/constant/6DoF.dat'
 
-    line_list = [f"\n{total_steps}\n(\n"]
-    line_list.extend([ f"({time_steps[line]} (({vel_x[line]} {vel_y[line]} 0) (0 0 {rotation[line]})))\n" for line in range(total_steps) ])
+    line_list = [f"\n{total_steps}\n(\n".format(total_steps)]
+    line_list.extend([ f"({time_steps[line]} (({vel_x[line]} {vel_y[line]} 0) (0 0 {rotation[line]})))\n".format(time_steps[line], vel_x[line], vel_y[line], rotation[line]) for line in range(total_steps) ])
     line_list.extend([ f")\n" ])
     
     file_lines = ''.join(line_list)
@@ -41,7 +42,7 @@ def dynamicMeshDictupdate(total_steps, time_steps, vel_x, vel_y, rotation, case_
 
     file.close()
 
-def runSim(runMesh = False, case_name=None):
+def runSim(case_name, runMesh = False):
 
     if runMesh == True:
         path_mesh = case_name + '/run_mesh.sh'
@@ -56,14 +57,15 @@ if __name__ == '__main__':
     case_name = 'CS238_dummy_case'
 
     #paramters for running simulation duration
-    new_start_time = 0.1 #0
-    new_end_time = 200 #100
-    new_writeInterval = 0.4 #0.2
+    new_start_time = 0.0 #0
+    new_end_time = 4 #100
+    #should result in an *integer number of steps*:
+    new_writeInterval = 1 #0.2
 
     controlDictupdate(new_start_time, new_end_time, new_writeInterval, case_name)
 
     #paramters for swimmer movement during simulations
-    total_steps = 4
+    total_steps = int ((new_end_time - new_start_time) / new_writeInterval)
     time_steps = linspace(0,total_steps,total_steps)
     vel_x = linspace(1,100,total_steps)
     vel_y = linspace(1,100,total_steps)
@@ -72,5 +74,4 @@ if __name__ == '__main__':
     dynamicMeshDictupdate(total_steps, time_steps, vel_x, vel_y, rotation, case_name)
 
     #do you need to run_mesh also? (changing # of swimmers)
-    runSim(case_name)
-
+    runSim(case_name, True)
