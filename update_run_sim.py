@@ -1,6 +1,7 @@
 import numpy as np
 from numpy import linspace
 import subprocess
+import os
 
 def controlDictupdate(new_start_time, new_end_time, new_writeInterval, case_name):
     
@@ -14,13 +15,13 @@ def controlDictupdate(new_start_time, new_end_time, new_writeInterval, case_name
     for line_number , line_content in enumerate(file_lines):
         if line_content.startswith("startTime"):
             '''can't use this method on ssh w/ lower version python, need 3.6 have 3.5
-            file_lines[line_number] = f"startTime       {new_start_time};\n" #7 spaces
+            file_lines[line_number] = f"startTime       {};{}" #7 spaces
             '''
-            file_lines[line_number] = f"startTime       {new_start_time};\n".format(new_start_time) #7 spaces
+            file_lines[line_number] = f"startTime       {};{}".format(new_start_time, eol) #7 spaces
         elif line_content.startswith("endTime"):
-            file_lines[line_number] = f"endTime         {new_end_time};\n".format(new_end_time) #9 spaces
+            file_lines[line_number] = f"endTime         {};{}".format(new_end_time, eol) #9 spaces
         elif line_content.startswith("writeInterval"):
-            file_lines[line_number] = f"writeInterval   {new_writeInterval};\n".format(new_writeInterval) #3 spaces
+            file_lines[line_number] = f"writeInterval   {};{}".format(new_writeInterval, eol) #3 spaces
 
     with open(path, 'w') as file:
         file.writelines(file_lines)
@@ -31,9 +32,9 @@ def dynamicMeshDictupdate(total_steps, time_steps, vel_x, vel_y, rotation, case_
 
     path = case_name + '/backGround/constant/6DoF.dat'
 
-    line_list = [f"\n{total_steps}\n(\n".format(total_steps)]
-    line_list.extend([ f"({time_steps[line]} (({vel_x[line]} {vel_y[line]} 0) (0 0 {rotation[line]})))\n".format(time_steps[line], vel_x[line], vel_y[line], rotation[line]) for line in range(total_steps) ])
-    line_list.extend([ f")\n" ])
+    line_list = [f"{}{total_steps}{}({}".format(eol,total_steps,eol,eol)]
+    line_list.extend([ f"({]} (({]} {} 0) (0 0 {rotation[line]}))){}".format(time_steps[line], vel_x[line], vel_y[line], rotation[line]) for line in range(total_steps) ])
+    line_list.extend([ f"){}".format(eol) ])
     
     file_lines = ''.join(line_list)
 
