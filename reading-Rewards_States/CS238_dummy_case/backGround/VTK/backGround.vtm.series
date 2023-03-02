@@ -1,0 +1,13 @@
+{
+  "file-series-version" : "1.0",
+  "files" : [
+    { "name" : "backGround_0.vtm", "time" : 0 },
+    { "name" : "backGround_52.vtm", "time" : 0.2 },
+    { "name" : "backGround_72.vtm", "time" : 0.4 },
+    { "name" : "backGround_92.vtm", "time" : 0.6 },
+    { "name" : "backGround_113.vtm", "time" : 0.8 },
+    { "name" : "backGround_135.vtm", "time" : 1 },
+    { "name" : "backGround_158.vtm", "time" : 1.2 },
+    { "name" : "backGround_182.vtm", "time" : 1.4 }
+  ]
+}

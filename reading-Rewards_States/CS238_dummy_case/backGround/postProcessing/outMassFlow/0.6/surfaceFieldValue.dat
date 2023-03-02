@@ -1,0 +1,540 @@
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.609524          	1.2005306691e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.619048          	1.2005301081e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.628571          	1.2004496988e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.638095          	1.2004340234e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.647619          	1.2003925973e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.657143          	1.2002867817e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.666667          	1.2001800758e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.67619           	1.2002870572e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.685714          	1.2002099493e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.695238          	1.2001254153e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.704762          	1.2000683232e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.714286          	1.2000137876e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.72381           	1.1999306327e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.733333          	1.1998652584e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.742857          	1.1998007751e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.752381          	1.1997843114e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.761905          	1.1997786988e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.771429          	1.1997975460e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.780952          	1.1997394058e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.790476          	1.1996686629e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.8               	1.1996023882e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.809091          	1.1992729568e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.818182          	1.1991122120e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.827273          	1.1989941788e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.836364          	1.1988963904e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.845455          	1.1988095347e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.854545          	1.1988235524e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.863636          	1.1987140342e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.872727          	1.1987935655e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.881818          	1.1987214265e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.890909          	1.1986387787e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.9               	1.1984504612e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.909091          	1.1983237248e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.918182          	1.1981923783e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.927273          	1.1984727938e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.936364          	1.1986077639e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.945455          	1.1987698297e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.954545          	1.1989583999e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.963636          	1.1990064427e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.972727          	1.1990187267e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.981818          	1.1990496334e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+0.990909          	1.1991712114e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1                 	1.1992158349e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.0087            	1.1992521623e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.01739           	1.1991723652e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.02609           	1.1992332203e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.03478           	1.1993611807e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.04348           	1.1993944919e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.05217           	1.1994133965e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.06087           	1.1994278894e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.06957           	1.1994262056e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.07826           	1.1994102820e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.08696           	1.1994004035e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.09565           	1.1995038975e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.10435           	1.1994807908e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.11304           	1.1994915792e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.12174           	1.1994736162e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.13043           	1.1996116928e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.13913           	1.1995507470e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.14783           	1.1997002076e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.15652           	1.1997850326e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.16522           	1.1998172184e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.17391           	1.1998365555e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.18261           	1.1998638329e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.1913            	1.1998423961e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.2               	1.1997719710e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.20833           	1.1997173456e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.21667           	1.1997722890e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.225             	1.2001193159e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.23333           	1.2001772910e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.24167           	1.2000027732e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.25              	1.1999051240e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.25833           	1.1999952867e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.26667           	1.1998709112e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.275             	1.1997376577e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.28333           	1.1995501893e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.29167           	1.1996200794e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.3               	1.1996870679e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.30833           	1.1998023742e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.31667           	1.1997030700e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.325             	1.1997038702e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.33333           	1.1995206043e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.34167           	1.1995462702e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.35              	1.1996124955e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.35833           	1.1997519870e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.36667           	1.1997957259e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.375             	1.1998824152e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.38333           	1.1997757358e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.39167           	1.1997461794e+01
+# Region type :   patch outlet
+# Faces           : 120
+# Area            : 1.2000000000e+01
+# Scale factor    : 1.0000000000e+00
+# Time            	sum(phi)
+1.4               	1.1997594884e+01
