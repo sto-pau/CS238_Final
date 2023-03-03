@@ -4,9 +4,10 @@ note the Qlearning code called
 contains the model including exploration policy
 '''
 import numpy as np
-from numpy import linspace
 import subprocess
 import os
+import json
+import pyvista as pv
 
 def controlDictupdate(new_start_time, new_end_time, new_writeInterval, case_name):
     '''
@@ -61,77 +62,222 @@ def dynamicMeshDictupdate(total_steps, time_steps, vel_x, vel_y, rotation, case_
 
     file.close()
 
-def runSim(case_name, runMesh = False):
+def runIntialSim(case_name):
+    org_path = os.getcwd()
+    os.chdir(org_path + '/' + case_name)
+    subprocess.run(['./run_mesh.sh'])
+    subprocess.run(['./run_solver_i.sh'])
+    os.chdir(org_path)
 
-    if runMesh == True:
-        path_mesh = case_name + '/run_mesh.sh'
-        subprocess.run([path_mesh])
+def runSim(case_name):
+    org_path = os.getcwd()
+    os.chdir(org_path + '/' + case_name)
+    subprocess.run(['./run_solver.sh'])
+    os.chdir(org_path)
+    
+    
+def get_Rewards_States(case_name,time_start,fms_flag,time_analysis):
+    '''
+    --- --- input
+    case_name = simulation folder
+    time_start = what is the time_start in the control dict
+    fms_flag = use forces and moments to get the state (else it is the pressure)
+    time_analysis = array with what times we want to analyze
+    --- --- output
+    state_prime, reward 
 
-    path_submit = case_name + '/backGround/submit_run.sh'    
-    subprocess.run(['sbatch', path_submit])
+    #
+    '''
+    if time_start == round(time_start):
+        time_start = round(time_start)
+    
+    path_rewards = case_name+'/backGround/postProcessing/forceCoeffs_object/' + str(time_start) + '/'
+    file_rewards = 'coefficient.dat'
+    data_rewards = np.loadtxt(path_rewards+file_rewards,skiprows=13)
+    rewards = np.zeros((len(time_analysis),13))
+    for t,time in enumerate(time_analysis):
+        rewards[t] = data_rewards[data_rewards[:,0]==time,:]
+        
+    if fms_flag: #force,moment state
+        # states: 
+            # forces and moments 
+            # time total_x total_y total_z	pressure_x pressure_y pressure_z  viscous_x viscous_y viscous_z
+            # 0    1       2       3        4          5          6            7        8         9
+        path_states_forces = case_name+'/backGround/postProcessing/forces_object/' + str(time_start) + '/'
+        file_states_forces = 'force.dat'
+        data_states_forces = np.loadtxt(path_states_forces+file_states_forces,skiprows=4)
+        file_states_moments = 'moment.dat'
+        data_states_moments = np.loadtxt(path_states_forces+file_states_moments,skiprows=4)
+        states_forces = np.zeros((len(time_analysis),10))
+        states_moments = np.zeros((len(time_analysis),10))
+        for t,time in enumerate(time_analysis):
+            states_forces[t] = data_states_forces[data_states_forces[:,0]==time,:]
+            states_moments[t] = data_states_moments[data_states_moments[:,0]==time,:]
+        return np.hstack((states_forces,states_moments)), rewards
+    
+    else:
+            # pressure along airfoil
+        path_states_p_series = case_name+'/backGround/VTK/'
+        file_states_p_series = 'backGround.vtm.series'
+            # Open the JSON file and load the data
+        with open(path_states_p_series+file_states_p_series, 'r') as f:
+            data_states_forces = json.load(f)
+        data_states_forces = data_states_forces['files']
+        states_p_filenames = [""] * len(time_analysis)
+            # loop through and find relevant times
+        for file_data in data_states_forces:
+            name = file_data['name']
+            time = file_data['time']
+            if time in time_analysis:
+                states_p_filenames[np.where(time_analysis==time)[0][0]] = name.split('.')[0]
+        states_p = np.zeros((len(time_analysis),652))
+        for p,file_states_p in enumerate(states_p_filenames):
+            path_states_p = case_name+'/backGround/VTK/'+file_states_p+'/boundary/wing.vtp'
+            reader = pv.get_reader(path_states_p)
+            reader.disable_all_cell_arrays()
+            reader.disable_all_point_arrays()
+            reader.enable_point_array('p')
+            states_p[p,:] = np.array(reader.read().point_data['p'])
+        return states_p, rewards
+    
+def get_Rewards_States_list(case_name,sim_step_length,fms_flag,time_analysis):
+    '''
+    --- --- input
+    case_name = simulation folder
+    sim_step_length = time step size in simulation
+    fms_flag = use forces and moments to get the state (else it is the pressure)
+    time_analysis = array with what times we want to analyze
+    --- --- output
+    state_prime, reward 
 
+    #
+    '''
+    rewards = np.zeros((len(time_analysis),13))
+    states_forces = np.zeros((len(time_analysis),10))
+    states_moments = np.zeros((len(time_analysis),10))
+    states_p = np.zeros((len(time_analysis),652))
+
+    if ~fms_flag: #force,moment state
+        path_states_p_series = case_name+'/backGround/VTK/'
+        file_states_p_series = 'backGround.vtm.series'
+            # Open the JSON file and load the data
+        with open(path_states_p_series+file_states_p_series, 'r') as f:
+            data_states_forces = json.load(f)
+        data_states_forces = data_states_forces['files']
+        states_p_filenames = [""] * len(time_analysis)
+            # loop through and find relevant times
+        for file_data in data_states_forces:
+            name = file_data['name']
+            time = file_data['time']
+            if time in time_analysis:
+                states_p_filenames[np.where(time_analysis==time)[0][0]] = name.split('.')[0]
+
+    for t,time_start in enumerate(time_analysis):
+        if (time_start-sim_step_length) == round(time_start-sim_step_length):
+            tt = round(time_start-sim_step_length)
+        else:
+            tt = time_start-sim_step_length
+            
+        path_rewards = case_name+'/backGround/postProcessing/forceCoeffs_object/' + str(tt) + '/'
+        file_rewards = 'coefficient.dat'
+        data_rewards = np.loadtxt(path_rewards+file_rewards,skiprows=13)
+        rewards[t] = data_rewards[data_rewards[:,0]==time_start,:]
+            
+        if fms_flag: #force,moment state
+            # states: 
+                # forces and moments 
+                # time total_x total_y total_z	pressure_x pressure_y pressure_z  viscous_x viscous_y viscous_z
+                # 0    1       2       3        4          5          6            7        8         9
+            path_states_forces = case_name+'/backGround/postProcessing/forces_object/' + str(tt) + '/'
+            file_states_forces = 'force.dat'
+            data_states_forces = np.loadtxt(path_states_forces+file_states_forces,skiprows=4)
+            file_states_moments = 'moment.dat'
+            data_states_moments = np.loadtxt(path_states_forces+file_states_moments,skiprows=4)
+            states_forces[t] = data_states_forces[data_states_forces[:,0]==time_start,:]
+            states_moments[t] = data_states_moments[data_states_moments[:,0]==time_start,:]
+            
+        else:
+            # pressure along airfoil
+            file_states_p = states_p_filenames[t]
+            path_states_p = case_name+'/backGround/VTK/'+file_states_p+'/boundary/wing.vtp'
+            reader = pv.get_reader(path_states_p)
+            reader.disable_all_cell_arrays()
+            reader.disable_all_point_arrays()
+            reader.enable_point_array('p')
+            states_p[t,:] = np.array(reader.read().point_data['p'])
+        
+    if fms_flag:
+        return np.hstack((states_forces,states_moments)), rewards
+    return states_p, rewards
+
+    
+    
+    
 if __name__ == '__main__':
 
     #filepath to simulation folder
-    case_name = 'CS238_dummy_case'
+    case_name = 'test_framework' #123
 
+    # use states that are defined by forces and moments or pressure
+    fms_flag = True 
     ''''''''''''''''''''''setup section'''''''''''''''''''''''''''''''''''''
     run model to reach steady state
     10 seconds without moving the swimmer
     '''
     init_start_time = 0
-    init_end_time  = 10
-    init_writeInterval = 10 
+    init_end_time  = 1#123 #10
+    init_writeInterval = init_end_time-init_start_time
     controlDictupdate(init_start_time, init_end_time, init_writeInterval, case_name)    
     
     init_total_steps = 2 #start and end only
-    init_time_steps = np.array([0, end_time])
+    init_time_steps = np.array([0, init_end_time+1e-6])
     #initial action is no motion
     vel_x = np.array([0, 0])
     vel_y = np.array([0, 0])
     rotation = np.array([0, 0])    
     dynamicMeshDictupdate(init_total_steps, init_time_steps, vel_x, vel_y, rotation, case_name)
     
-    '''to be updated, run first simulation, get initial state and reward
-
-    runSim(case_name, True)
-    state_prime, rewards = ReadOutput(start_time, sim_step_length+start_time)
+    # run first simulation
+    runIntialSim(case_name)
+    # get the intial state
+    state_prime, _ = get_Rewards_States(case_name,init_start_time,fms_flag,[init_end_time])
     state = state_prime #for first case, no motion, no change in state
-    '''
-
     ''''''''''''''''''''''learning loop'''''''''''''''''''''''''''''''''''''    
     start time is where setup section ended
     '''
     #evaluation loop
-    start_t = end_time #start at the end of init period
-    duration  = 10 #total learning length
-    sim_step_length = 0.1 
+    start_t = init_end_time #start at the end of init period
+    duration  = 1 #123               10 #total learning length
+    sim_step_length = 0.2 #123       0.1
     #from 10.1 to 20 in steps of 0.1
-    time_steps = linspace(end_time+sim_step_length, end_time+duration, int(duration/sim_step_length))
-    for end_t in time_steps:  
+    # round is required because of numerical precison issues of linspace
+    time_steps = np.round(np.linspace(init_end_time+sim_step_length, init_end_time+duration, int(duration/sim_step_length)),6)
 
+
+
+    # DELETE
+    action = 1 #123
+    for end_t in time_steps:  
+        action +=1  #123
+        action = action % 360  #123
         '''to be updated call Q_learning for action
         action = Q_learning.getPolicy(state)
         '''
-
         #set action states, linear interpolation in between        
         rotation[1] = action #set end action for next simulation based on Q
         controlDictupdate(start_t, end_t, sim_step_length, case_name)
-        sim_time_steps = np.array([start_t, end_t])
+        sim_time_steps = np.array([start_t, end_t+1e-6])
         dynamicMeshDictupdate(2, sim_time_steps, vel_x, vel_y, rotation, case_name)  
-        '''to be updated simulate to get next state and reward 
-
-        runSim(case_name, True)
-        state_prime, reward = ReadOutput(start_time, sim_step_length+start_time)
-        '''
-
+        #simulate to get next state and reward 
+        runSim(case_name)
+        #get the state and rewards
+        state_prime, reward = get_Rewards_States(case_name,start_t,fms_flag,[end_t])
+        print(end_t,state_prime,reward)#123
         '''to be updated, update model
-
-        Q_learning.Update(state, action, reward, state_prime)'''
-
-        '''to be updated save values for next loop
-        
-        state = state_prime'''        
+        Q_learning.Update(state, action, reward, state_prime)
+        '''
+        #updated save values for next loop
+        state = state_prime      
         start_t = end_t #set start time for next loop
         rotation[0] = rotation[1] #set start action as end of last state
 
@@ -140,37 +286,43 @@ if __name__ == '__main__':
     
     #evaluation loop
     eval_start = end_t #start at the end of init period
-    eval_duration  = 5 #total learning length
-    eval_step_length = 0.1 
+    eval_duration  = 1 #123         5 #total learning length
+    eval_step_length = 0.2 #123     0.1
     #from 20.1 to 25 in steps of 0.1
-    eval_steps = linspace(end_t+eval_step_length, end_t+eval_duration, int(eval_duration/eval_step_length))
+    eval_steps = np.round(np.linspace(end_t+eval_step_length, end_t+eval_duration, int(eval_duration/eval_step_length)),6)
 
     actions = []
     rewards = []
 
     for eval_end in eval_steps:  
+        action +=1 #123
+        action = action % 360 #123
 
         '''to be updated call Q_learning for action
         action = Q_learning.getPolicy(state)
         actions.extend(action)
         '''
-
         #set action states, linear interpolation in between        
         rotation[1] = action #set end action for next simulation based on Q
-        controlDictupdate(start_t, end_t, sim_step_length, case_name)
-        sim_time_steps = np.array([start_t, end_t])
+        controlDictupdate(eval_start, eval_end, sim_step_length, case_name)
+        sim_time_steps = np.array([eval_start, eval_end+1e-6])
         dynamicMeshDictupdate(2, sim_time_steps, vel_x, vel_y, rotation, case_name)  
-        '''to be updated simulate to get next state and reward 
+        #simulate to get next state and reward 
+        runSim(case_name)
+        #get the state and rewards
+        state_prime, reward = get_Rewards_States(case_name,eval_start,fms_flag,[eval_end])
 
-        runSim(case_name, True)
-        state_prime, reward = ReadOutput(start_time, sim_step_length+start_time)
-        rewards.extend(reward)
+        '''to be updated, update model
+        Q_learning.Update(state, action, reward, state_prime)
         '''
-
-        '''to be updated save values for next loop
         
-        state = state_prime'''        
-        start_t = end_t #set start time for next loop
+        #updated save values for next loop
+        state = state_prime      
+        eval_start = eval_end #set start time for next loop
         rotation[0] = rotation[1] #set start action as end of last state
-
-   #evaluation actions + rewards
+        
+    #evaluation actions + rewards
+    _, reward = get_Rewards_States_list(case_name,sim_step_length,fms_flag,eval_steps)
+    print('total reward: ', np.sum(reward))
+   
+   

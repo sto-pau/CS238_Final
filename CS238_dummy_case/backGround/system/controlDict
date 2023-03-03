@@ -19,18 +19,18 @@ application     pimpleDyMFoam;
 
 startFrom       startTime;
 
-startTime       1;
+startTime       0;
 
 stopAt          endTime;
 
-endTime         0;
+endTime         10;
 
 deltaT          1e-5;
 
 writeControl    adjustableRunTime;
 //writeControl    runTime;
 
-writeInterval   0;
+writeInterval   10;
 
 purgeWrite      0;
 
