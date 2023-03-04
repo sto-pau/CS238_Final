@@ -1,8 +1,8 @@
+using Random
+using LinearAlgebra
 """
 Initilize, update and get action from linear model
 """
-using Random.Random
-using LinearAlgebra
 
 scale_gradient(∇, L2_max) = min(L2_max/norm(∇), 1)*∇
 

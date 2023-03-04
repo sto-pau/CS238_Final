@@ -267,8 +267,9 @@ if __name__ == '__main__':
 
     for end_t in time_steps:  
         '''call linear model to get action index [1,12]'''
+        '''NOTE THAT REWARD MUST BE A SINGLE NUMBER'''
         action = Main.get_action(model, state.flatten(), False, False)     
-        rotation[1] += action_space[action] #set end action for next simulation based on Q
+        rotation[1] += action_space[action-1] #set end action for next simulation based on Q
         rotation[1] = rotation[1] % 360 if rotation[1] > 0 else rotation[1] % -360
         controlDictupdate(start_t, end_t, sim_step_length, case_name)
         sim_time_steps = np.array([start_t, end_t+1e-6])
@@ -293,15 +294,11 @@ if __name__ == '__main__':
     #from 20.1 to 25 in steps of 0.1
     eval_steps = np.round(np.linspace(end_t+eval_step_length, end_t+eval_duration, int(eval_duration/eval_step_length)),6)
 
-    actions = []
-    rewards = []
-
     for eval_end in eval_steps:  
         '''call linear model to get action index [1,12]'''
         action = Main.get_action(model, state.flatten(), False, True)     
-        rotation[1] += action_space[action] #set end action for next simulation based on Q
+        rotation[1] += action_space[action-1] #set end action for next simulation based on Q
         rotation[1] = rotation[1] % 360 if rotation[1] > 0 else rotation[1] % -360
-        actions.append(action_space[action])
         controlDictupdate(eval_start, eval_end, sim_step_length, case_name)
         sim_time_steps = np.array([eval_start, eval_end+1e-6])
         dynamicMeshDictupdate(2, sim_time_steps, vel_x, vel_y, rotation, case_name)  
