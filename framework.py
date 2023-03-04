@@ -9,6 +9,12 @@ import os
 import json
 import pyvista as pv
 
+from julia.api import Julia
+jl = Julia(compiled_modules=False)
+from julia import Main
+Main.include("linear_model.jl")
+
+
 def controlDictupdate(new_start_time, new_end_time, new_writeInterval, case_name):
     '''
     new_start_time = time to start simulation
@@ -245,7 +251,7 @@ if __name__ == '__main__':
     ''''''''''''''''''''''learning loop'''''''''''''''''''''''''''''''''''''    
     start time is where setup section ended
     '''
-    #evaluation loop
+    #learning loop
     start_t = init_end_time #start at the end of init period
     duration  = 1 #123               10 #total learning length
     sim_step_length = 0.2 #123       0.1
@@ -253,18 +259,17 @@ if __name__ == '__main__':
     # round is required because of numerical precison issues of linspace
     time_steps = np.round(np.linspace(init_end_time+sim_step_length, init_end_time+duration, int(duration/sim_step_length)),6)
 
+    '''model setup'''
+    state_dim = len(state_prime.flatten()) # linear model expects 1D input
+    action_space = [i for i in range(-90,90+15,15)] # change as needed
+    num_actions = len(action_space) 
+    model = Main.create_model(state_dim, num_actions)
 
-
-    # DELETE
-    action = 1 #123
     for end_t in time_steps:  
-        action +=1  #123
-        action = action % 360  #123
-        '''to be updated call Q_learning for action
-        action = Q_learning.getPolicy(state)
-        '''
-        #set action states, linear interpolation in between        
-        rotation[1] = action #set end action for next simulation based on Q
+        '''call linear model to get action index [1,12]'''
+        action = Main.get_action(model, state.flatten(), False, False)     
+        rotation[1] += action_space[action] #set end action for next simulation based on Q
+        rotation[1] = rotation[1] % 360 if rotation[1] > 0 else rotation[1] % -360
         controlDictupdate(start_t, end_t, sim_step_length, case_name)
         sim_time_steps = np.array([start_t, end_t+1e-6])
         dynamicMeshDictupdate(2, sim_time_steps, vel_x, vel_y, rotation, case_name)  
@@ -273,17 +278,14 @@ if __name__ == '__main__':
         #get the state and rewards
         state_prime, reward = get_Rewards_States(case_name,start_t,fms_flag,[end_t])
         print(end_t,state_prime,reward)#123
-        '''to be updated, update model
-        Q_learning.Update(state, action, reward, state_prime)
-        '''
+        '''update model'''
+        Main.update_b(model, state.flatten(), action, reward, state_prime.flatten())
         #updated save values for next loop
         state = state_prime      
         start_t = end_t #set start time for next loop
         rotation[0] = rotation[1] #set start action as end of last state
 
     ''''''''''''''''''''''evaluation section'''''''''''''''''''''''''''''''''
-    #policy = Q_learning.getPolicy()
-    
     #evaluation loop
     eval_start = end_t #start at the end of init period
     eval_duration  = 1 #123         5 #total learning length
@@ -295,15 +297,11 @@ if __name__ == '__main__':
     rewards = []
 
     for eval_end in eval_steps:  
-        action +=1 #123
-        action = action % 360 #123
-
-        '''to be updated call Q_learning for action
-        action = Q_learning.getPolicy(state)
-        actions.extend(action)
-        '''
-        #set action states, linear interpolation in between        
-        rotation[1] = action #set end action for next simulation based on Q
+        '''call linear model to get action index [1,12]'''
+        action = Main.get_action(model, state.flatten(), False, True)     
+        rotation[1] += action_space[action] #set end action for next simulation based on Q
+        rotation[1] = rotation[1] % 360 if rotation[1] > 0 else rotation[1] % -360
+        actions.append(action_space[action])
         controlDictupdate(eval_start, eval_end, sim_step_length, case_name)
         sim_time_steps = np.array([eval_start, eval_end+1e-6])
         dynamicMeshDictupdate(2, sim_time_steps, vel_x, vel_y, rotation, case_name)  
@@ -311,11 +309,8 @@ if __name__ == '__main__':
         runSim(case_name)
         #get the state and rewards
         state_prime, reward = get_Rewards_States(case_name,eval_start,fms_flag,[eval_end])
-
-        '''to be updated, update model
-        Q_learning.Update(state, action, reward, state_prime)
-        '''
-        
+        '''update model'''
+        Main.update_b(model, state.flatten(), action, reward, state_prime.flatten())
         #updated save values for next loop
         state = state_prime      
         eval_start = eval_end #set start time for next loop
