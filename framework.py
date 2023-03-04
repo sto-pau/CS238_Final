@@ -182,7 +182,7 @@ def get_Rewards_States_list(case_name,sim_step_length,fms_flag,time_analysis):
         if (time_start-sim_step_length) == round(time_start-sim_step_length):
             tt = round(time_start-sim_step_length)
         else:
-            tt = time_start-sim_step_length
+            tt = np.round(time_start-sim_step_length,6)
             
         path_rewards = case_name+'/backGround/postProcessing/forceCoeffs_object/' + str(tt) + '/'
         file_rewards = 'coefficient.dat'
