@@ -280,7 +280,7 @@ if __name__ == '__main__':
         state_prime, reward = get_Rewards_States(case_name,start_t,fms_flag,[end_t])
         print(end_t,state_prime,reward)#123
         '''update model'''
-        Main.update_b(model, state.flatten(), action, reward, state_prime.flatten())
+        Main.update_b(model, state.flatten(), action, reward[0][1], state_prime.flatten())
         #updated save values for next loop
         state = state_prime      
         start_t = end_t #set start time for next loop
@@ -305,16 +305,12 @@ if __name__ == '__main__':
         #simulate to get next state and reward 
         runSim(case_name)
         #get the state and rewards
-        state_prime, reward = get_Rewards_States(case_name,eval_start,fms_flag,[eval_end])
-        '''update model'''
-        Main.update_b(model, state.flatten(), action, reward, state_prime.flatten())
-        #updated save values for next loop
-        state = state_prime      
+        state, _ = get_Rewards_States(case_name,eval_start,fms_flag,[eval_end])   
         eval_start = eval_end #set start time for next loop
         rotation[0] = rotation[1] #set start action as end of last state
         
     #evaluation actions + rewards
     _, reward = get_Rewards_States_list(case_name,sim_step_length,fms_flag,eval_steps)
-    print('total reward: ', np.sum(reward))
+    print('total reward: ', np.sum(reward[:][1]))
    
    
