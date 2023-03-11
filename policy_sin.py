@@ -219,13 +219,28 @@ def get_Rewards_States_list(case_name,sim_step_length,fms_flag,time_analysis):
         return np.hstack((states_forces,states_moments)), rewards
     return states_p, rewards
 
+def save_data(eval_steps, list_of_actions, total_reward, filename):
+
+    eol = os.linesep
+
+    line_list = ["Total Reward = {}{}".format(total_reward,eol)]
+    line_list.extend("Step, Action{}".format(eol))
     
+    for iter in range(len(eval_steps)):
+        line_list.extend("{}, {}{}".format(eval_steps[iter], list_of_actions[iter], eol))
+
+    file_lines = ''.join(line_list)
+
+    with open(path, 'w') as file:
+        file.writelines(file_lines)
+
+    file.close()
     
     
 if __name__ == '__main__':
 
     #filepath to simulation folder
-    case_name = 'status_policy_rand'
+    case_name = 'test_framework_sin'
 
     # use states that are defined by forces and moments or pressure
     fms_flag = True 
@@ -282,25 +297,24 @@ if __name__ == '__main__':
     ''''''''''''''''''''''evaluation section'''''''''''''''''''''''''''''''''
     #evaluation loop
     eval_start = init_end_time #start at the of training + 3 for return to zero
-    eval_duration  = 20 #total learning length
     eval_step_length = 0.4
-    #from 20.1 to 25 in steps of 0.1
+    eval_duration  = 0.4 * (16 * 2) * 4 #matches wave characteristics #total learning length
+    #from 20.1 to 25 in steps of 0.4
     eval_steps = np.round(np.linspace(eval_start+eval_step_length, eval_start+eval_duration, int(eval_duration/eval_step_length)),6)
     
     #setup sinusoidal actions
-    peak = 15
-    step_size = 2.5
+    peak = 16
+    step_size = 2
     discrete = int(peak / step_size) #must be int, half a wave
     #TO DO add error if not non-fractional
     start_fall = [-step_size] *  discrete
     sin_rise = [step_size] * (2*discrete)
     mid_mid = start_fall + sin_rise + start_fall
-    list_of_actions =  mid_mid * eval_duration
+    list_of_actions =  mid_mid * 4
     #TO DO: added error flag if not repetitive motion print(sum(action_space))
     
     for step_number, eval_end in enumerate(eval_steps):  
-        action = list_of_actions[step_number]
-        list_of_actions.append(action)     
+        action = list_of_actions[step_number]   
         rotation[1] += action #set end action for next simulation based on Q
         rotation[1] = rotation[1] % 360 if rotation[1] > 0 else rotation[1] % -360
         controlDictupdate(eval_start, eval_end, eval_step_length, case_name)
@@ -319,3 +333,8 @@ if __name__ == '__main__':
       total_reward += reward[i][1]
     print('list of actions: ', list_of_actions)
     print('total reward:  ', total_reward)
+
+    save_path = 'case_name'
+    file_name = 'straight_inlet_sin_motion' 
+    filename = save_path + file_name + '.reward'
+    save_data(eval_steps, list_of_actions, total_reward, filename)
