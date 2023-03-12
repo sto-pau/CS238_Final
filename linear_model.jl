@@ -46,15 +46,23 @@ function lookahead(model::GradientQLearning, s, a)
 end
 
 function update!(model::GradientQLearning, s, a, r, s′)
-    𝒜, γ, Q, θ, α = model.𝒜, model.γ, model.Q, model.θ, model.α
-    u = maximum(Q(θ,s′,a′) for a′ in 𝒜)
-    println("Q($s, $a) before = ", Q(θ,s,a))
-    Δ = (r + γ*u - Q(θ,s,a))*model.∇Q(θ,s,a)
-    println("Δ = $Δ")
-    θ[:] += α*scale_gradient(Δ, 1)    
+    𝒜, γ, Q, θ_all, α = model.𝒜, model.γ, model.Q, model.θ, model.α
+    #θ = θ_all[a,:]
+    u = maximum(Q(θ_all,s′,a′) for a′ in 𝒜) #picks the right θ from create model
+    #println("Q($s, $a) before = ", Q(θ,s,a))
+    println("θ before = ", θ_all[a,:])
+    Δ = (r + γ*u - Q(θ_all,s,a))*model.∇Q(θ_all,s,a)
+    #println("Δ = $Δ")
+    θ_all[a,:] += α*scale_gradient(Δ, 1)
+    println("θ new = ", θ_all[a,:])
+    #println("Beta = ", [a;a^2;1])    
     for a in model.𝒜
-        println("Q($s, $a) = after", Q(θ,s,a))
+        #println("Beta = ", [s; s.^2])
+        #println("theta = ", θ_all[a,:])
+        #println("dot product = ", dot(θ_all[a,:],[s; s.^2]))
+        println("Q($s, $a) = after ", Q(θ_all,s,a))
     end
+
     return model
 end
 
@@ -65,27 +73,33 @@ function create_model(dim_𝒮, num_𝒜)
         @param num_𝒜: size of action space
         @return model
     """
-    β(s,a) = [a,a^2,1] #[s; s.^2]#; [a,a^2,1] ]
+    β(s,a) = [s; s.^2]#; [1/a,1/a^2,1]]
     #β(s,a) = [s;sin.(s*a);[a, 1/(a^2), 1]]
-    Q(θ,s,a) = dot(θ,β(s,a))
+    #β(s,a) = [s;sin.(s*a);[a, 1/(a^2), 1]]
+    #β(s,a) = [s;sin.(s*a);[a, 1/(a^2), 1]]
+    Q(θ,s,a) = dot(θ[a,:],β(s,a))
     ∇Q(θ,s,a) = β(s,a)
 
     # edit size when changing β
-    θ = zeros(3)#2*dim_𝒮)#+3) # initial parameter vector 
-    α = 0.1 # learning rate
+    θ = zeros(num_𝒜, 2*dim_𝒮)#+3) # initial parameter vector
+    println("########HERE#########")
+    #println(length(θ))
+    println(length(θ[1,:]))
+    println(length(β([0.7521249483579198; 0.6158437981730852; 0.7751844081995053; 0.27339792997417833; 0.909379539842818; 0.47161836599360274], 1)))
+    α = 0.5 # learning rate
     𝒜 = collect(1:num_𝒜) # number of states = 12
     γ = 0.95 # discount
-    model = GradientQLearning(𝒜, γ, Q, ∇Q, θ, α) 
+    model = GradientQLearning(𝒜, γ, Q, ∇Q, θ, α)
     return model
 end
 
 function get_action(model::GradientQLearning, s, rand, test)
     """
     Returns action for current state s
-        @param model: initilized linear model 
+        @param model: initilized linear model
         @param s: current state
-        @param rand: explore only << initializing phase >> 
-        @param test: exploit only << testing phase >> 
+        @param rand: explore only << initializing phase >>
+        @param test: exploit only << testing phase >>
         @return action
     """
     ε = rand ? 1 : (test ? 0 : 0.1) # probability of random action
@@ -96,11 +110,11 @@ end
 function get_action_sm(model::GradientQLearning, s, learn, test)
     """
     Returns action for current state s
-        @param model: initilized linear model 
+        @param model: initilized linear model
         @param s: current state
-        @param learn: explore only << initializing phase >> 
+        @param learn: explore only << initializing phase >>
         if learn is true, λ is 1
-        @param test: exploit only << testing phase >> 
+        @param test: exploit only << testing phase >>
         if learn is false
             if test is true , λ is 50 (0 is uniform)
             else if test is false, print error
