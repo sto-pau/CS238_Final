@@ -8,6 +8,7 @@ import subprocess
 import os
 import json
 import pyvista as pv
+import pickle
 
 from julia.api import Julia
 jl = Julia(compiled_modules=False)
@@ -320,9 +321,9 @@ if __name__ == '__main__':
 
     ''''''''''''''''''''''evaluation section'''''''''''''''''''''''''''''''''
     # return to zero --> take 5 seconds
-    r_0_t = 8 # return to zero time
+    r_0_t = 5 # return to zero time
     controlDictupdate(end_t,end_t+r_0_t,r_0_t,case_name)
-    sim_time_steps = np.array([end_t,end_t+r_0_t*0.7, end_t+r_0_t+1e-6])
+    sim_time_steps = np.array([end_t,end_t+r_0_t*0.8, end_t+r_0_t+1e-6])
     dynamicMeshDictupdate(3, sim_time_steps, np.array([0,0,0]), np.array([0,0,0]), np.array([rotation[0],0,0]), case_name)
     runSim(case_name)
     state_prime, _ = get_Rewards_States(case_name,end_t,fms_flag,[end_t+r_0_t])
@@ -359,6 +360,12 @@ if __name__ == '__main__':
     _, reward = get_Rewards_States_list(case_name,eval_step_length,fms_flag,eval_steps)
     total_reward = 0
     # write
+    print('eval_steps: ', eval_steps)
+    for i in range(len(eval_steps)):
+      total_reward += reward[i][1]
+    print('list of actions: ', list_of_actions)
+    print('total reward:  ', total_reward)
+
     with open(case_name+'/actions.txt', 'w') as fp:
         fp.write('\n'.join( str(a) for a in list_of_actions) )
         fp.write('\n')
@@ -388,9 +395,3 @@ if __name__ == '__main__':
     with open(case_name+'/rewards_CD_L.txt', 'w') as fp:
         fp.write('\n'.join( str(a[1]) for a in list_of_rewards_learning) )
         fp.write('\n')
-
-    print('eval_steps: ', eval_steps)
-    for i in range(len(eval_steps)):
-      total_reward += reward[i][1]
-    print('list of actions: ', list_of_actions)
-    print('total reward:  ', total_reward)
