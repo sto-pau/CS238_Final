@@ -15,4 +15,4 @@ module load julia
 eval "$(conda shell.bash hook)"
 conda activate cs238env
 cd /home/zalbasri/CS238/CS238_Final
-python3 framework_test_eps.py 
+python3 framework_eps03.py 

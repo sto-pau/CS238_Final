@@ -118,12 +118,12 @@ def get_Rewards_States(case_name,time_start,fms_flag,time_analysis):
         data_states_forces = np.loadtxt(path_states_forces+file_states_forces,skiprows=4)
         file_states_moments = 'moment.dat'
         data_states_moments = np.loadtxt(path_states_forces+file_states_moments,skiprows=4)
-        states_forces = np.zeros((len(time_analysis),10))
-        states_moments = np.zeros((len(time_analysis),10))
+        states_forces = np.zeros((len(time_analysis),9))
+        states_moments = np.zeros((len(time_analysis),9))
         for t,time in enumerate(time_analysis):
-            states_forces[t] = data_states_forces[data_states_forces[:,0]==time,:]
-            states_moments[t] = data_states_moments[data_states_moments[:,0]==time,:]
-        return np.hstack((states_forces,states_moments)), rewards
+            states_forces[t] = data_states_forces[data_states_forces[:,0]==time,1:]
+            states_moments[t] = data_states_moments[data_states_moments[:,0]==time,1:]
+        return np.hstack((states_forces,states_moments)), -1*rewards
 
     else:
             # pressure along airfoil
@@ -148,7 +148,7 @@ def get_Rewards_States(case_name,time_start,fms_flag,time_analysis):
             reader.disable_all_point_arrays()
             reader.enable_point_array('p')
             states_p[p,:] = np.array(reader.read().point_data['p'])
-        return states_p, rewards
+        return states_p, -1*rewards
 
 def get_Rewards_States_list(case_name,sim_step_length,fms_flag,time_analysis):
     '''
@@ -163,8 +163,8 @@ def get_Rewards_States_list(case_name,sim_step_length,fms_flag,time_analysis):
     #
     '''
     rewards = np.zeros((len(time_analysis),13))
-    states_forces = np.zeros((len(time_analysis),10))
-    states_moments = np.zeros((len(time_analysis),10))
+    states_forces = np.zeros((len(time_analysis),9))
+    states_moments = np.zeros((len(time_analysis),9))
     states_p = np.zeros((len(time_analysis),652))
 
     if ~fms_flag: #force,moment state
@@ -203,8 +203,8 @@ def get_Rewards_States_list(case_name,sim_step_length,fms_flag,time_analysis):
             data_states_forces = np.loadtxt(path_states_forces+file_states_forces,skiprows=4)
             file_states_moments = 'moment.dat'
             data_states_moments = np.loadtxt(path_states_forces+file_states_moments,skiprows=4)
-            states_forces[t] = data_states_forces[data_states_forces[:,0]==time_start,:]
-            states_moments[t] = data_states_moments[data_states_moments[:,0]==time_start,:]
+            states_forces[t] = data_states_forces[data_states_forces[:,0]==time_start,1:]
+            states_moments[t] = data_states_moments[data_states_moments[:,0]==time_start,1:]
 
         else:
             # pressure along airfoil
@@ -217,8 +217,8 @@ def get_Rewards_States_list(case_name,sim_step_length,fms_flag,time_analysis):
             states_p[t,:] = np.array(reader.read().point_data['p'])
 
     if fms_flag:
-        return np.hstack((states_forces,states_moments)), rewards
-    return states_p, rewards
+        return np.hstack((states_forces,states_moments)), -1 * rewards
+    return states_p, -1 * rewards
 
 
 

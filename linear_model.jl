@@ -96,6 +96,7 @@ function create_model(dim_𝒮, num_𝒜)
         @param num_𝒜: size of action space
         @return model
     """
+    # refer to line 115 in framework.py
     β(s,a) = [s; s.^2]
 
     Q(θ,s,a) = dot(θ[a,:],β(s,a))
