@@ -81,7 +81,7 @@ function lookahead(model::GradientQLearning, s, a)
 end
 
 function update!(model::GradientQLearning, s, a, r, s′)
-    𝒜, γ, Q, θ, α = model.𝒜, model.γ, model.Q, model.θ, model.α    
+    𝒜, γ, Q, θ, α, N = model.𝒜, model.γ, model.Q, model.θ, model.α, model.N   
     u = maximum(Q(θ,s′,a′) for a′ in 𝒜) #picks the right θ from create model
     Δ = (r + γ*u - Q(θ,s,a))*model.∇Q(θ,s,a)
     θ[a,:] += α*scale_gradient(Δ, 1)
@@ -147,4 +147,5 @@ function example_run()
     for i in 1:10
         println(get_action(model, exploration_policy, rand(6,1) * 100, false, false))
     end
+    println(model.N)
 end
