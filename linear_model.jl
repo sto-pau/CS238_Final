@@ -85,6 +85,7 @@ function update!(model::GradientQLearning, s, a, r, s′)
     u = maximum(Q(θ,s′,a′) for a′ in 𝒜) #picks the right θ from create model
     Δ = (r + γ*u - Q(θ,s,a))*model.∇Q(θ,s,a)
     θ[a,:] += α*scale_gradient(Δ, 1)
+    N[a] += 1
     return model
 end
 
