@@ -24,8 +24,8 @@ mutable struct SoftmaxExploration
     α # precision factor
 end
 
-function (π_sm::SoftmaxExploration)(model, s)
-    λ, α = π_sm.λ, π_sm.α
+function (π::SoftmaxExploration)(model, s)
+    λ, α = π.λ, π.α
     Q(s,a) = lookahead(model, s, a)
     weights = exp.(λ * mean.([Q(s,a) for a in 𝒜]))
     λ *= α
@@ -68,53 +68,29 @@ function create_model(dim_𝒮, num_𝒜)
     # edit size when changing β
     θ = zeros(num_𝒜, 2*dim_𝒮) #initial parameter vector
     α = 0.5 # learning rate
-    𝒜 = collect(1:num_𝒜) # number of states = 12
+    𝒜 = collect(1:num_𝒜) # number of states
     γ = 0.95 # discount
     model = GradientQLearning(𝒜, γ, Q, ∇Q, θ, α)
     return model
 end
 
-function get_action(model::GradientQLearning, s, rand, test)
+function get_action(model::GradientQLearning, π, s, rand, test)
     """
     Returns action for current state s
         @param model: initilized linear model
+        @param π: exploration policy
         @param s: current state
-        @param rand: explore only << initializing phase >>
+        @param rand: explore only (FULLY random) << initializing phase >>
         @param test: exploit only << testing phase >>
         @return action
     """
-    ε = rand ? 1 : (test ? 0 : 0.1) # probability of random action
-    π = EpsilonGreedyExploration(ε)
-    return π(model, s)
-end
-
-function get_action_sm(model::GradientQLearning, s, learn, test)
-    """
-    Returns action for current state s
-        @param model: initilized linear model
-        @param s: current state
-        @param learn: explore only << initializing phase >>
-        if learn is true, λ is 1
-        @param test: exploit only << testing phase >>
-        if learn is false
-            if test is true , λ is 50 (0 is uniform)
-            else if test is false, print error
-        @return action
-    """
-    if learn
-        λ = 50 # probability of random action
-        α = 1 #1 is no decay to start
-        π_sm = SoftmaxExploration(λ, α)
-        return π_sm(model, s)
+    if rand
+        return rand(model.𝒜)
     elseif test
         Q(s,a) = lookahead(model, s, a)
-        # for a in model.𝒜
-        #     println("Q($s, $a) = ", Q(s, a))
-        # end
         return argmax(a->Q(s,a), model.𝒜)
-    else
-        println("did not specify learn or test, one must be set to True")
     end
+    return π(model, s)
 end
 
 function example_run()

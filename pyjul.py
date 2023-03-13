@@ -23,10 +23,11 @@ from julia import Main
 Main.include("linear_model.jl")
 
 model = Main.create_model(6, 3)
-for i in range(50):
+exploration_policy = Main.SoftmaxExploration(50, 1)
+
+for i in range(500):
     s = np.random.rand(6,1)
     a = random.randint(1,3)
-    norm = np.linalg.norm(s)
     if s[0] < 0.5 and a == 1: #stay close to center
         r = 20
     elif s[0] > 0.5 and a == 2: #better to stay in the center
@@ -34,9 +35,10 @@ for i in range(50):
     else: #a = don't reward any big motion regardless of state
         r = 0 
     sp = np.random.rand(6,1)
-    print("a r:", a, r)
+    # print("a r:", a, r)
     Main.update_b(model, s, a, r, sp)
+
 for i in range(10):
     s = np.random.rand(6,1)
     print(s)
-    print(Main.get_action_sm(model, s, False, True))
+    print(Main.get_action(model, exploration_policy, s, False, True))
