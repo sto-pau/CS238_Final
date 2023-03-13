@@ -23,7 +23,9 @@ from julia import Main
 Main.include("linear_model.jl")
 
 model = Main.create_model(6, 3)
-exploration_policy = Main.SoftmaxExploration(50, 1)
+# exploration_policy = Main.SoftmaxExploration(5, 1)
+# exploration_policy = Main.EpsilonGreedyExploration(0.1)
+exploration_policy = Main.UCB1Exploration(5)
 
 for i in range(500):
     s = np.random.rand(6,1)
@@ -41,4 +43,4 @@ for i in range(500):
 for i in range(10):
     s = np.random.rand(6,1)
     print(s)
-    print(Main.get_action(model, exploration_policy, s, False, True))
+    print(Main.get_action(model, exploration_policy, s, False, False))

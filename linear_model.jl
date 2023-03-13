@@ -1,5 +1,7 @@
 using Random
 using LinearAlgebra
+using Statistics
+using Distributions
 """
 Initilize, update and get action from linear model
 """
@@ -13,6 +15,7 @@ end
 function (π::EpsilonGreedyExploration)(model, s)
     𝒜, ϵ = model.𝒜, π.ϵ
     if rand() < ϵ
+        println("here")
         return rand(𝒜)
     end
     Q(s,a) = lookahead(model, s, a)
@@ -20,17 +23,48 @@ function (π::EpsilonGreedyExploration)(model, s)
 end
 
 mutable struct SoftmaxExploration
-    λ # precision parameter
+    λ # precision parameter, choose small value so it doesn't go to infinity
     α # precision factor
 end
 
 function (π::SoftmaxExploration)(model, s)
-    λ, α = π.λ, π.α
+    𝒜, λ, α = model.𝒜, π.λ, π.α
     Q(s,a) = lookahead(model, s, a)
-    weights = exp.(λ * mean.([Q(s,a) for a in 𝒜]))
+    weights = exp.(λ * ([Q(s,a) for a in 𝒜]))
     λ *= α
     return rand(Categorical(normalize(weights, 1)))
 end
+
+mutable struct UCB1Exploration
+    c # exploration constant
+end
+
+function bonus(π::UCB1Exploration, counts, a)
+	N = sum(counts)
+	Na = counts[a]
+    return π.c * sqrt(log(N)/Na)
+end
+
+function (π::UCB1Exploration)(model, s)
+    Q(s,a) = lookahead(model, s, a)
+    ρ = [Q(s,a) for a in model.𝒜]
+    u = ρ .+ [bonus(π, model.N, a) for a in model.𝒜]
+    return argmax(u)
+end
+
+"""
+DOES NOTE WORK AS IT IS RIGHT NOW
+since Q(s,a) is a scalar, not a vector or distribution 
+
+mutable struct QuantileExploration
+    α # quantile (e.g., 0.95)
+end
+
+function (π::QuantileExploration)(model, s)
+    Q(s,a) = lookahead(model, s, a)
+    return argmax(quantile(a->Q(s,a), π.α), 𝒜)
+end
+"""
 
 struct GradientQLearning
     𝒜  # action space (assumes 1:nactions)
@@ -39,6 +73,7 @@ struct GradientQLearning
     ∇Q # gradient of action value function
     θ  # action value function parameter
     α  # learning rate
+    N  # number of times action was taken + pseudocounts
 end
 
 function lookahead(model::GradientQLearning, s, a)
@@ -70,7 +105,8 @@ function create_model(dim_𝒮, num_𝒜)
     α = 0.5 # learning rate
     𝒜 = collect(1:num_𝒜) # number of states
     γ = 0.95 # discount
-    model = GradientQLearning(𝒜, γ, Q, ∇Q, θ, α)
+    N = ones(num_𝒜) # pseudocounts for UCB1
+    model = GradientQLearning(𝒜, γ, Q, ∇Q, θ, α, N)
     return model
 end
 
@@ -98,6 +134,7 @@ function example_run()
     Demos how to use
     """
     model = create_model(6, 3)
+    exploration_policy = UCB1Exploration(10)
     for i in 1:1000
         s = rand(6,1) * 100
         a = rand(1:3)
@@ -105,8 +142,8 @@ function example_run()
         s′ = rand(6,1) * 100
         update!(model, s, a, r, s′)
     end
-    print(model.θ)
+    # print(model.θ)
     for i in 1:10
-        println(get_action_sm(model, rand(6,1) * 100, false, true))
+        println(get_action(model, exploration_policy, rand(6,1) * 100, false, false))
     end
 end
