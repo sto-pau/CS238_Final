@@ -12,7 +12,7 @@ import pyvista as pv
 from julia.api import Julia
 jl = Julia(compiled_modules=False)
 from julia import Main
-Main.include("linear_model_ep0.1.jl")
+Main.include("linear_model.jl")
 
 
 def controlDictupdate(new_start_time, new_end_time, new_writeInterval, case_name):
@@ -292,14 +292,17 @@ if __name__ == '__main__':
     action_space = list(np.arange(-15,15,2.5)) # change as needed
     num_actions = len(action_space)
     model = Main.create_model(state_dim, num_actions)
+    exploration_policy = Main.EpsilonGreedyExploration(0.1) # change exploration policy
+
     list_of_actions_learning = []
     list_of_states_learning = []
     list_of_rewards_learning = []
+
     for end_t in time_steps:
         list_of_states_learning.append(state)
         '''call linear model to get action index [1,12]'''
         '''NOTE THAT REWARD MUST BE A SINGLE NUMBER'''
-        action = Main.get_action(model, state.flatten(), False, False)
+        action = Main.get_action(model, exploration_policy, state.flatten(), False, False)
         list_of_actions_learning.append(action_space[action-1])
         rotation[1] += action_space[action-1] #set end action for next simulation based on Q
         rotation[1] = rotation[1] % 360 if rotation[1] > 0 else rotation[1] % -360
@@ -339,7 +342,7 @@ if __name__ == '__main__':
     for eval_end in eval_steps:
         list_of_states.append(state)
         '''call linear model to get action index [1,12]'''
-        action = Main.get_action(model, state.flatten(), False, True)
+        action = Main.get_action(model, exploration_policy, state.flatten(), False, True)
         list_of_actions.append(action_space[action-1])
         rotation[1] += action_space[action-1] #set end action for next simulation based on Q
         rotation[1] = rotation[1] % 360 if rotation[1] > 0 else rotation[1] % -360
