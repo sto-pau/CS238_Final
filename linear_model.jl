@@ -36,7 +36,7 @@ function (π::SoftmaxExploration)(model, s)
 end
 
 mutable struct UCB1Exploration
-    c # exploration constant
+    c # exploration constant between 0-1
 end
 
 function bonus(π::UCB1Exploration, counts, a)
@@ -48,7 +48,7 @@ end
 function (π::UCB1Exploration)(model, s)
     Q(s,a) = lookahead(model, s, a)
     ρ = [Q(s,a) for a in model.𝒜]
-    u = ρ .+ [bonus(π, model.N, a) for a in model.𝒜]
+    u = ρ .+ argmax(ρ)*[bonus(π, model.N, a) for a in model.𝒜]
     return argmax(u)
 end
 

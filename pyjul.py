@@ -25,7 +25,7 @@ Main.include("linear_model.jl")
 model = Main.create_model(6, 3)
 # exploration_policy = Main.SoftmaxExploration(5, 1)
 # exploration_policy = Main.EpsilonGreedyExploration(0.1)
-exploration_policy = Main.UCB1Exploration(5)
+exploration_policy = Main.UCB1Exploration(0.2)
 
 for i in range(500):
     s = np.random.rand(6,1)
