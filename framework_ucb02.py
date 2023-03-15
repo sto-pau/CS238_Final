@@ -226,7 +226,7 @@ def get_Rewards_States_list(case_name,sim_step_length,fms_flag,time_analysis):
 if __name__ == '__main__':
 
     #filepath to simulation folder
-    case_name = 'eps0.3v1' #123
+    case_name = 'ucb0.2v1' #123
 
     # use states that are defined by forces and moments or pressure
     fms_flag = True
