@@ -352,7 +352,7 @@ if __name__ == '__main__':
         #simulate to get next state and reward
         runSim(case_name)
         #get the state and rewards
-        state, _ = get_Rewards_States(case_name,eval_start,fms_flag,[eval_end])
+        state_prime, _ = get_Rewards_States(case_name,eval_start,fms_flag,[eval_end])
         #updated save values for next loop
         state = state_prime
         eval_start = eval_end #set start time for next loop
