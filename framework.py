@@ -331,6 +331,7 @@ if __name__ == '__main__':
     state_prime, _ = get_Rewards_States(case_name,end_t,fms_flag,[end_t+r_0_t])
     state = state_prime #for first case, no motion, no change in state
     rotation[0] = 0
+    rotation[1] = 0
     #evaluation loop
     eval_start = end_t+r_0_t #start at the of training + 3 for return to zero
     eval_duration  = 20 #total learning length
