@@ -303,7 +303,7 @@ if __name__ == '__main__':
         dynamicMeshDictupdate(2, sim_time_steps, vel_x, vel_y, rotation, case_name)  
         #simulate to get next state and reward 
         runSim(case_name)
-        state_prime, _ = get_Rewards_States(case_name,init_start_time,fms_flag,[eval_end])
+        state_prime, _ = get_Rewards_States(case_name,eval_start,fms_flag,[eval_end])
         state = state_prime 
         eval_start = eval_end #set start time for next loop
         rotation[0] = rotation[1] #set start action as end of last state
