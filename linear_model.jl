@@ -10,14 +10,15 @@ scale_gradient(∇, L2_max) = min(L2_max/norm(∇), 1)*∇
 
 mutable struct EpsilonGreedyExploration
     ϵ # probability of random arm
+    α # decay constant between 0-1
 end
 
 function (π::EpsilonGreedyExploration)(model, s)
     𝒜, ϵ = model.𝒜, π.ϵ
     if rand() < ϵ
-        println("here")
         return rand(𝒜)
     end
+    ϵ *= α
     Q(s,a) = lookahead(model, s, a)
     return argmax(a->Q(s,a), 𝒜)
 end
@@ -32,7 +33,10 @@ function (π::SoftmaxExploration)(model, s)
     Q(s,a) = lookahead(model, s, a)
     weights = exp.(λ * ([Q(s,a) for a in 𝒜]))
     λ *= α
-    return rand(Categorical(normalize(weights, 1)))
+    weights = normalize(weights, 1)
+    p = (1-sum(A -> map(x -> isnan(x) ? zero(x) : x, A), weights)) / count(i->(isnan(i)), weights)
+    replace!(weights, NaN=>p)
+    return rand(Categorical(weights))
 end
 
 mutable struct UCB1Exploration
@@ -136,7 +140,7 @@ function example_run()
     Demos how to use
     """
     model = create_model(6, 3)
-    exploration_policy = UCB1Exploration(10)
+    exploration_policy = SoftmaxExploration(10,1)
     for i in 1:1000
         s = rand(6,1) * 100
         a = rand(1:3)
