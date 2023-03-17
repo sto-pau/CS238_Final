@@ -226,7 +226,7 @@ def get_Rewards_States_list(case_name,sim_step_length,fms_flag,time_analysis):
 if __name__ == '__main__':
 
     #filepath to simulation folder
-    case_name = 'softmax_1_0.1' #123
+    case_name = 'test_framework_sin'
 
     # use states that are defined by forces and moments or pressure
     fms_flag = True
@@ -280,77 +280,37 @@ if __name__ == '__main__':
     start time is where setup section ended
     '''
     #learning loop
-    start_t = init_end_time #start at the end of init period
-    duration  = 70 #total learning length
-    sim_step_length = 0.4
-    #from 10.1 to 20 in steps of 0.1
-    # round is required because of numerical precison issues of linspace
-    time_steps = np.round(np.linspace(start_t+sim_step_length, start_t+duration, int(duration/sim_step_length)),6)
-
     '''model setup'''
-    state_dim = len(state_prime.flatten()) # linear model expects 1D input
     action_space = list(np.arange(-15,15,2.5)) # change as needed
-    num_actions = len(action_space)
-    model = Main.create_model(state_dim, num_actions)
-    exploration_policy = Main.SoftmaxExploration(1,0.1) # change exploration policy
-
-    list_of_actions_learning = []
-    list_of_states_learning = []
-    list_of_rewards_learning = []
-
-    for end_t in time_steps:
-        list_of_states_learning.append(state)
-        '''call linear model to get action index [1,12]'''
-        '''NOTE THAT REWARD MUST BE A SINGLE NUMBER'''
-        action = Main.get_action(model, exploration_policy, state.flatten(), False, False)
-        list_of_actions_learning.append(action_space[action-1])
-        rotation[1] += action_space[action-1] #set end action for next simulation based on Q
-        rotation[1] = rotation[1] % 360 if rotation[1] > 0 else rotation[1] % -360
-        controlDictupdate(start_t, end_t, sim_step_length, case_name)
-        sim_time_steps = np.array([start_t, end_t+1e-6])
-        dynamicMeshDictupdate(2, sim_time_steps, vel_x, vel_y, rotation, case_name)
-        #simulate to get next state and reward
-        runSim(case_name)
-        #get the state and rewards
-        state_prime, reward = get_Rewards_States(case_name,start_t,fms_flag,[end_t])
-        list_of_rewards_learning.append(reward[0][:])
-        '''update model'''
-        Main.update_b(model, state.flatten(), action, reward[0][1], state_prime.flatten())
-        #updated save values for next loop
-        state = state_prime
-        start_t = end_t #set start time for next loop
-        rotation[0] = rotation[1] #set start action as end of last state
 
     ''''''''''''''''''''''evaluation section'''''''''''''''''''''''''''''''''
-    # return to zero --> take 5 seconds
-    r_0_t = 8 # return to zero time
-    controlDictupdate(end_t,end_t+r_0_t,r_0_t,case_name)
-    sim_time_steps = np.array([end_t,end_t+r_0_t*0.7, end_t+r_0_t+1e-6])
-    dynamicMeshDictupdate(3, sim_time_steps, np.array([0,0,0]), np.array([0,0,0]), np.array([rotation[0],0,0]), case_name)
-    runSim(case_name)
-    state_prime, _ = get_Rewards_States(case_name,end_t,fms_flag,[end_t+r_0_t])
-    state = state_prime #for first case, no motion, no change in state
-    rotation[0] = 0
-    rotation[1] = 0
     #evaluation loop
-    eval_start = end_t+r_0_t #start at the of training + 3 for return to zero
-    eval_duration  = 20 #total learning length
-    eval_step_length = 0.4
-    #from 20.1 to 25 in steps of 0.1
+    eval_start = init_end_time #start at the of training + 3 for return to zero
+    eval_step_length = 0.16 #achieving close to 20. 20.48
+    eval_duration  = 0.16 * (16 * 2) * 4 #matches wave characteristics #total learning length
+    #from 20.1 to 25 in steps of 0.4
     eval_steps = np.round(np.linspace(eval_start+eval_step_length, eval_start+eval_duration, int(eval_duration/eval_step_length)),6)
-    list_of_actions = []
+    
+    #setup sinusoidal actions
+    peak = 16
+    step_size = 2
+    discrete = int(peak / step_size) #must be int, half a wave
+    #TO DO add error if not non-fractional
+    start_fall = [-step_size] *  discrete
+    sin_rise = [step_size] * (2*discrete)
+    mid_mid = start_fall + sin_rise + start_fall
+    list_of_actions =  mid_mid * 4
+    #TO DO: added error flag if not repetitive motion print(sum(action_space))
     list_of_states = []
-    for eval_end in eval_steps:
+    for step_number, eval_end in enumerate(eval_steps):  
         list_of_states.append(state)
-        '''call linear model to get action index [1,12]'''
-        action = Main.get_action(model, exploration_policy, state.flatten(), False, True)
-        list_of_actions.append(action_space[action-1])
-        rotation[1] += action_space[action-1] #set end action for next simulation based on Q
+        action = list_of_actions[step_number]   
+        rotation[1] += action #set end action for next simulation based on Q
         rotation[1] = rotation[1] % 360 if rotation[1] > 0 else rotation[1] % -360
         controlDictupdate(eval_start, eval_end, eval_step_length, case_name)
         sim_time_steps = np.array([eval_start, eval_end+1e-6])
-        dynamicMeshDictupdate(2, sim_time_steps, vel_x, vel_y, rotation, case_name)
-        #simulate to get next state and reward
+        dynamicMeshDictupdate(2, sim_time_steps, vel_x, vel_y, rotation, case_name)  
+        #simulate to get next state and reward 
         runSim(case_name)
         #get the state and rewards
         state_prime, _ = get_Rewards_States(case_name,eval_start,fms_flag,[eval_end])
@@ -358,7 +318,7 @@ if __name__ == '__main__':
         state = state_prime
         eval_start = eval_end #set start time for next loop
         rotation[0] = rotation[1] #set start action as end of last state
-
+     
     #evaluation actions + rewards
     _, reward = get_Rewards_States_list(case_name,eval_step_length,fms_flag,eval_steps)
     total_reward = 0
@@ -374,24 +334,6 @@ if __name__ == '__main__':
         fp.write('\n')
     with open(case_name+'/rewards_CD.txt', 'w') as fp:
         fp.write('\n'.join( str(a[1]) for a in reward) )
-        fp.write('\n')
-
-    py_obj_str = repr(model)
-    with open(case_name+'/model.txt', 'w') as f:
-       f.write(py_obj_str)
-
-    with open(case_name+'/actions_L.txt', 'w') as fp:
-        fp.write('\n'.join( str(a) for a in list_of_actions_learning) )
-        fp.write('\n')
-    with open(case_name+'/states_L.txt', 'w') as fp:
-        fp.write('\n'.join( str(a) for a in list_of_states_learning) )
-        fp.write('\n')
-    with open(case_name+'/rewards_L.txt', 'w') as fp:
-        fp.write('\n'.join( str(a) for a in list_of_rewards_learning) )
-        fp.write('\n')
-    with open(case_name+'/rewards_CD_L.txt', 'w') as fp:
-        fp.write('\n'.join( str(a[1]) for a in list_of_rewards_learning) )
-        fp.write('\n')
 
     print('eval_steps: ', eval_steps)
     for i in range(len(eval_steps)):
