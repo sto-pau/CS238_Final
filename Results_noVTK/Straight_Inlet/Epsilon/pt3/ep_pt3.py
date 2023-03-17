@@ -226,7 +226,7 @@ def get_Rewards_States_list(case_name,sim_step_length,fms_flag,time_analysis):
 if __name__ == '__main__':
 
     #filepath to simulation folder
-    case_name = 'test_framework_spi' #123
+    case_name = 'test_framework_mpi' #123
 
     # use states that are defined by forces and moments or pressure
     fms_flag = True
@@ -235,7 +235,7 @@ if __name__ == '__main__':
     10 seconds without moving the swimmer
     '''
     init_start_time = 0
-    init_end_time  = 0.1
+    init_end_time  = 10
     init_writeInterval = init_end_time-init_start_time
     controlDictupdate(init_start_time, init_end_time, init_writeInterval, case_name)
 
@@ -281,8 +281,8 @@ if __name__ == '__main__':
     '''
     #learning loop
     start_t = init_end_time #start at the end of init period
-    duration  = 0.4 #total learning length
-    sim_step_length = 0.1
+    duration  = 70 #total learning length
+    sim_step_length = 0.4
     #from 10.1 to 20 in steps of 0.1
     # round is required because of numerical precison issues of linspace
     time_steps = np.round(np.linspace(start_t+sim_step_length, start_t+duration, int(duration/sim_step_length)),6)
@@ -323,7 +323,7 @@ if __name__ == '__main__':
 
     ''''''''''''''''''''''evaluation section'''''''''''''''''''''''''''''''''
     # return to zero --> take 5 seconds
-    r_0_t = 0.2 # return to zero time
+    r_0_t = 8 # return to zero time
     controlDictupdate(end_t,end_t+r_0_t,r_0_t,case_name)
     sim_time_steps = np.array([end_t,end_t+r_0_t*0.7, end_t+r_0_t+1e-6])
     dynamicMeshDictupdate(3, sim_time_steps, np.array([0,0,0]), np.array([0,0,0]), np.array([rotation[0],0,0]), case_name)
@@ -334,8 +334,8 @@ if __name__ == '__main__':
     rotation[1] = 0
     #evaluation loop
     eval_start = end_t+r_0_t #start at the of training + 3 for return to zero
-    eval_duration  = 1 #total learning length
-    eval_step_length = 0.1
+    eval_duration  = 20 #total learning length
+    eval_step_length = 0.4
     #from 20.1 to 25 in steps of 0.1
     eval_steps = np.round(np.linspace(eval_start+eval_step_length, eval_start+eval_duration, int(eval_duration/eval_step_length)),6)
     list_of_actions = []

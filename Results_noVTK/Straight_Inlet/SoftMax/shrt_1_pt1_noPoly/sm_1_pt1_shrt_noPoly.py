@@ -235,7 +235,7 @@ if __name__ == '__main__':
     10 seconds without moving the swimmer
     '''
     init_start_time = 0
-    init_end_time  = 0.1
+    init_end_time  = 10
     init_writeInterval = init_end_time-init_start_time
     controlDictupdate(init_start_time, init_end_time, init_writeInterval, case_name)
 
