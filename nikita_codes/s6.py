@@ -12,8 +12,13 @@ import pyvista as pv
 from julia.api import Julia
 jl = Julia(compiled_modules=False)
 from julia import Main
-Main.include("linear_model.jl")
+Main.include("s6.jl")
 
+def cleanSim(case_name):
+    org_path = os.getcwd()
+    os.chdir(org_path + '/' + case_name)
+    subprocess.run(['./clean_script.sh'])
+    os.chdir(org_path)
 
 def controlDictupdate(new_start_time, new_end_time, new_writeInterval, case_name):
     '''
@@ -226,7 +231,7 @@ def get_Rewards_States_list(case_name,sim_step_length,fms_flag,time_analysis):
 if __name__ == '__main__':
 
     #filepath to simulation folder
-    case_name = 'eps0.1' #123
+    case_name = 's6' #123
 
     # use states that are defined by forces and moments or pressure
     fms_flag = True
@@ -235,7 +240,7 @@ if __name__ == '__main__':
     10 seconds without moving the swimmer
     '''
     init_start_time = 0
-    init_end_time  = 10
+    init_end_time  = 10 #FFF
     init_writeInterval = init_end_time-init_start_time
     controlDictupdate(init_start_time, init_end_time, init_writeInterval, case_name)
 
@@ -282,7 +287,7 @@ if __name__ == '__main__':
     #learning loop
     start_t = init_end_time #start at the end of init period
     duration  = 70 #total learning length
-    sim_step_length = 0.4
+    sim_step_length = 0.4 #FFF
     #from 10.1 to 20 in steps of 0.1
     # round is required because of numerical precison issues of linspace
     time_steps = np.round(np.linspace(start_t+sim_step_length, start_t+duration, int(duration/sim_step_length)),6)
@@ -292,7 +297,7 @@ if __name__ == '__main__':
     action_space = list(np.arange(-15,15,2.5)) # change as needed
     num_actions = len(action_space)
     model = Main.create_model(state_dim, num_actions)
-    exploration_policy = Main.EpsilonGreedyExploration(0.1) # change exploration policy
+    exploration_policy = Main.EpsilonGreedyExploration(0.3) # change exploration policy
 
     list_of_actions_learning = []
     list_of_states_learning = []
@@ -331,7 +336,7 @@ if __name__ == '__main__':
     state_prime, _ = get_Rewards_States(case_name,end_t,fms_flag,[end_t+r_0_t])
     state = state_prime #for first case, no motion, no change in state
     rotation[0] = 0
-    rotation[1] = 0
+    cleanSim(case_name)
     #evaluation loop
     eval_start = end_t+r_0_t #start at the of training + 3 for return to zero
     eval_duration  = 20 #total learning length
