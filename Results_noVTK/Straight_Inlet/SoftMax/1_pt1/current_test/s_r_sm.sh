@@ -2,8 +2,8 @@
 
 #SBATCH --nodes=1
 #SBATCH -q normal
-#SBATCH -N 4
-#SBATCH -t 08:00:00
+#SBATCH -N 1
+#SBATCH -t 20:00:00
 #SBATCH -J  sme
 #SBATCH --mail-user=stoccop@stanford.edu
 #SBATCH --mail-type=ALL

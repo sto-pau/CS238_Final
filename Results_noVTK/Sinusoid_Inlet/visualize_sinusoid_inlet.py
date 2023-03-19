@@ -1,17 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-A = 1
-w = 0.4
+A = 5
+total_time = 70
+total_cycles = 7
+f = 2*np.pi/ (total_time / total_cycles) #1
 A_off = 6
 B = 1
-f = 2*np.pi/70 #1
+w = 3*f
 
 # Define the parameter t
-t = np.linspace(0, 70, 100) #(0, 2*np.pi, 100)
+t = np.linspace(0, 70, 1000) #(0, 2*np.pi, 100)
 
 # Define the x and y coordinatesES
-x = A*np.cos(f*t)
+x = A*np.cos(w*t)
 y = B*np.sin(f*t)
 z = t
 
@@ -40,4 +42,16 @@ ax.set_zlabel('z')
 ax.set_title('3D Scatter Plot')
 
 # Show the plot
+plt.show()
+
+amplitude = np.sqrt(x**2 + y**2)
+direction = 
+# Plot the curve
+plt.plot(t, amplitude)
+
+# Add axis labels and a title
+plt.xlabel('amplitude')
+plt.ylabel('t')
+
+# Display the plot
 plt.show()
