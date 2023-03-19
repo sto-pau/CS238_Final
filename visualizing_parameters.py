@@ -93,34 +93,41 @@ def compare_actions(params):
     act2_list = []
     act3_list = []
 
+    act_list = []
+
     for i in range(len(X)):
         for j in range(len(Y)):
             if act1[i][j] >= act2[i][j] and act1[i][j] >= act3[i][j]:
                 act1_list.append(1)
                 act2_list.append(0)
                 act3_list.append(0)
+                act_list.append(1)
             elif act2[i][j] >= act1[i][j] and act2[i][j] >= act3[i][j]:
                 act1_list.append(0)
                 act2_list.append(1)
                 act3_list.append(0)
+                act_list.append(2)
             else:
                 act1_list.append(0)
                 act2_list.append(0)
                 act3_list.append(1)
+                act_list.append(3)
 
     # reshape act1_list into a 2D array with the same shape as X and Y
     act1 = np.reshape(act1_list, X.shape)   
     act2 = np.reshape(act2_list, X.shape)
     act3_test = np.reshape(act3_list, X.shape)
+    act_list = np.reshape(act_list, X.shape)
 
     # Set the colormap to blue when act > 0, and transparent when act = 0
     cmap = ListedColormap(['none', 'blue'])  
     print(act3_test)
 
     # Create a filled contour plot with conditional coloring
-    #plt.contourf(X, Y, act1, levels=2, colors=['blue'], alpha=0.5)#, where=mask1)
-    #plt.contourf(X, Y, act2, levels=2, colors=['red'], alpha=0.5)#, where=mask2)
-    plt.contourf(X, Y, act3_test, levels=1, colors=['blue', 'none'])#, levels=[0,1], cmap=cmap, alpha=1.0)#, where=mask3)
+    #plt.contourf(X, Y, act1, levels=1, colors=['none','green'])#, alpha=0.5)#, where=mask1)
+    #plt.contour(X, Y, act2, levels=1, colors=['none','red'])#, alpha=0.5)#, where=mask2)
+    #plt.contour(X, Y, act3_test, levels=1, colors=['none', 'blue'])#, levels=[0,1], cmap=cmap, alpha=1.0)#, where=mask3)
+    plt.contourf(X, Y, act_list, levels=[0,1,2,3], colors=['blue','green','red'])#, alpha=0.5)#, where=mask1)
     plt.colorbar()
 
     plt.show()
@@ -162,7 +169,8 @@ if __name__ == '__main__':
         s = [x, y]
         #sp = [0, 0]
 
-        a = random.randint(1,3)
+        #a = random.randint(1,3)
+        a = Main.get_action(model, exploration_policy, s, False, False)
 
         if a == 1:
             s_1.append(s)
