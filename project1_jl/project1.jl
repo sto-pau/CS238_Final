@@ -40,6 +40,30 @@ Arguments:
 Returns:
     - The location of the minimum
 """
+
+function back_tracking_line_search(f, g, x_k, dir, alpha)
+    """
+    f = objective function, desire MINIMIZE
+    g = gradient for f at x_k
+    dir = descent direction
+    alpha = step size modifier
+    percent = percent decrease of alpha each loop
+    """
+    #percent decrease of alpha until f(x_k+1) <= f(x_k) + step_size
+    #where x_k+1 is alpha*dir
+    #and step_size = beta*alpha*direction along the gradient
+    beta = 1e-4 #shared as a common value for beta on pg 56
+    step_size = beta * alpha * (g⋅dir)
+    iterator_tracking = 0
+
+    while f(x_k + alpha*dir) >
+        iterator_tracking  += 1
+        alpha *= percent
+    end
+    return
+end   
+
+
 function optimize(f, g, x0, n, prob)
     x_best = x0
     return x_best
